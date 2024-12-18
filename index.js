@@ -64,9 +64,6 @@ app.get("/auth/check", checkForAuthentication("token"), (req, res) => {
     return res.status(401).json({ message: `${error}` });
   }
 });
-app.use("/", (req, res) => {
-  res.send("server runnign...");
-});
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 app.use("/courses", courseRouter);
