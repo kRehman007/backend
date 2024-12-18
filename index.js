@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
-const expressSession = require("express-session");
+const session = require("express-session");
 const RedisStore = require("connect-redis")(session);
 const cors = require("cors");
 const {
