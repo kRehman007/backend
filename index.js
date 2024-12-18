@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
+const RedisStore = require("connect-redis")(session);
 const cors = require("cors");
 const {
   checkForAuthentication,
@@ -30,10 +31,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(flash());
 app.use(
-  expressSession({
-    resave: false,
-    saveUninitialized: false,
+  session({
+    store: new RedisStore({ client }),
     secret: process.env.FLASH_SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
   })
 );
 
@@ -64,7 +66,9 @@ app.get("/auth/check", checkForAuthentication("token"), (req, res) => {
     return res.status(401).json({ message: `${error}` });
   }
 });
-
+app.use("/", (req, res) => {
+  res.send("server runnign...");
+});
 app.use("/admin", adminRouter);
 app.use("/user", userRouter);
 app.use("/courses", courseRouter);

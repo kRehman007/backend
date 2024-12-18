@@ -3,6 +3,7 @@
     "@sendgrid/mail": "^8.1.4",
     "config": "^3.3.12",
     "connect-flash": "^0.1.1",
+    "connect-redis": "^8.0.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -11,7 +12,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.2",
     "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.16"
+    "nodemailer": "^6.9.16",
+    "redis": "^4.7.0"
   },
   "name": "backend",
   "version": "1.0.0",
