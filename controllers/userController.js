@@ -25,6 +25,7 @@ const userSignUp = async (req, res) => {
 };
 
 const userLogIn = async (req, res) => {
+  console.log("controller");
   const { email, password } = req.body;
   try {
     const token = await userModel.matchPasswordAndGenerateToken(
