@@ -18,7 +18,7 @@ const {
 //Middlewares...
 app.use(
   cors({
-    origin: "https://mern-frontend-self-eight.vercel.app/",
+    origin: "https://mern-frontend-self-eight.vercel.app",
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization",
     credentials: true,
