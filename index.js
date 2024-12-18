@@ -9,20 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const Redis = require("ioredis");
-const RedisStore = require("connect-redis");
+const expressSession = require("express-session");
 const cors = require("cors");
 const {
   checkForAuthentication,
 } = require("./middlewares/checkForAuthentication");
-
-//Class...
-const redisClient = new Redis({
-  host: "localhost", // or the Redis host you use
-  port: 6379, // default Redis port
-  // Optionally, you can add authentication and other configurations here
-});
 
 //Middlewares...
 app.use(
@@ -33,16 +24,16 @@ app.use(
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(flash());
 app.use(
-  session({
-    store: new RedisStore({ client: redisClient }), // Pass the Redis client
-    secret: process.env.FLASH_SESSION_SECRET,
+  expressSession({
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    secret: process.env.FLASH_SESSION_SECRET,
   })
 );
 
