@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 5000;
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
-const db = require("./config/mongoose_connection");
 const cors = require("cors");
 const {
   checkForAuthentication,
