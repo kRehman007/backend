@@ -5,15 +5,12 @@ const userSignUp = async (req, res) => {
   const { fullname, username, email, password } = req.body;
 
   try {
-    const createdUser = await userModel.create({
+    await userModel.create({
       fullname,
       username,
       email,
       password,
-      role:
-        email === "kashisial2327@gmail.com" && password === "123456"
-          ? "admin"
-          : "user",
+      role: email === process.env.ADMIN_EMAI ? "admin" : "user",
     });
     res.status(201).json({ message: "You are  successfully signed up..." });
   } catch (error) {
@@ -21,6 +18,9 @@ const userSignUp = async (req, res) => {
     if (error.code === 11000) {
       res.status(400).json({ message: "Email already exists" });
     }
+    res
+      .status(500)
+      .json({ message: "Something went wrong. Please try again later." });
   }
 };
 
@@ -44,13 +44,14 @@ const userLogIn = async (req, res) => {
       role: userData.role,
       email: userData.email,
     };
-    res.status(201).json({
+    res.status(200).json({
       user,
       message: "you are successfully logged in",
     });
   } catch (error) {
-    console.log(error);
-    res.status(401).json({ message: `${error}` });
+    res
+      .status(401)
+      .json({ message: "Invalid email or password. Please try again." });
   }
 };
 
