@@ -10,7 +10,7 @@ const userSignUp = async (req, res) => {
       username,
       email,
       password,
-      role: email === process.env.ADMIN_EMAI ? "admin" : "user",
+      role: email === process.env.ADMIN_EMAIL ? "admin" : "user",
     });
     res.status(201).json({ message: "You are  successfully signed up..." });
   } catch (error) {
