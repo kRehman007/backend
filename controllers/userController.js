@@ -49,9 +49,7 @@ const userLogIn = async (req, res) => {
       message: "you are successfully logged in",
     });
   } catch (error) {
-    res
-      .status(401)
-      .json({ message: "Invalid email or password. Please try again." });
+    res.status(401).json({ message: "Invalid email or password." });
   }
 };
 
