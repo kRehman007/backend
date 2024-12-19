@@ -1,11 +1,9 @@
 require("../config/multer_config");
 const userModel = require("../models/user-model");
+require("dotenv").config();
 
 const userSignUp = async (req, res) => {
   const { fullname, username, email, password } = req.body;
-  console.log(email === process.env.ADMIN_EMAIL);
-  console.log("email", email);
-  console.log(process.env.ADMIN_EMAIL);
 
   try {
     await userModel.create({
