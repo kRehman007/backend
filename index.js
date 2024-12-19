@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./config/mongoose_connection");
 const express = require("express");
 const adminRouter = require("./routes/adminRouter");
 const userRouter = require("./routes/userRouter");
