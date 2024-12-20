@@ -39,9 +39,6 @@ app.use(
 );
 
 //Routes...
-app.get("/", checkForAuthentication("token"), (req, res) => {
-  res.send("home");
-});
 
 app.get("/auth/check", checkForAuthentication("token"), (req, res) => {
   try {
